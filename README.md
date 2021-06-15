@@ -1,2 +1,2 @@
 # JspServletPract
-## deploy each project on heroku
+## deploy each projects on heroku

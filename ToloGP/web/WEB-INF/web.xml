@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <description>DB name</description>
+        <param-name>DbContext</param-name>
+        <param-value>TOLO</param-value>
+    </context-param>
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>config.Configuration</listener-class>
+    </listener>
     <servlet>
-        <servlet-name>test</servlet-name>
-        <servlet-class>controller.test</servlet-class>
+        <servlet-name>SignInServlet</servlet-name>
+        <servlet-class>controller.SignInServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SignUpServlet</servlet-name>
+        <servlet-class>controller.SignUpServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>test</servlet-name>
-        <url-pattern>/test</url-pattern>
+        <servlet-name>SignInServlet</servlet-name>
+        <url-pattern>/SignInServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignUpServlet</servlet-name>
+        <url-pattern>/SignUpServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
-            30
+            5
         </session-timeout>
     </session-config>
+    <!-- =============================== WELCOME =============================== -->
+    <welcome-file-list>
+        <welcome-file>view/Welcome.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

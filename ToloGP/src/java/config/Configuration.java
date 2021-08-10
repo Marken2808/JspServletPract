@@ -18,34 +18,39 @@ import javax.servlet.ServletContextListener;
  */
 public class Configuration implements ServletContextListener {
     //  declare connection
-    Connection conn = null;
+    Connection connection = null;
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
     //  create context 
         ServletContext context = sce.getServletContext();
         
-        String database = context.getInitParameter("DbContext");
+        
         String dbName = "tolo";
         String dbPass = "tolo";
         
+        String database = context.getInitParameter("DbContext");
+        String userTable = context.getInitParameter("UserContext");
+        
+        System.out.println("<<<" + database.trim());
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
-            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/" + database.trim(), dbName, dbPass);
+            connection = DriverManager.getConnection("jdbc:derby://localhost:1527/" + database.trim(), dbName, dbPass);
         } catch (SQLException | ClassNotFoundException e) {
-//            System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
 
 //      set shortcut to callback
-        context.setAttribute("conn", conn);
+        context.setAttribute("connection", connection);
+        context.setAttribute("userTable", userTable);
+        
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         try {      
-            conn.close();
+            connection.close();
         } catch (SQLException ex) {
-//            Logger.getLogger(BaseListener.class.getName()).log(Level.SEVERE, null, ex);
         }
     }   
 }

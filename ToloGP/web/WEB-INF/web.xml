@@ -3,7 +3,12 @@
     <context-param>
         <description>DB name</description>
         <param-name>DbContext</param-name>
-        <param-value>TOLO</param-value>
+        <param-value>ToloGP</param-value>
+    </context-param>
+    <context-param>
+        <description>User Table</description>
+        <param-name>UserContext</param-name>
+        <param-value>USERS</param-value>
     </context-param>
     <listener>
         <description>ServletContextListener</description>

@@ -13,5 +13,12 @@
     </head>
     <body>
         <h1>SUCCESSFULLY!</h1>
+        <%
+            String key = (String) session.getAttribute("sessionKey");
+            String data = (String) session.getAttribute("userData");
+        %>
+        
+        <%=key%>
+        <%=data%>
     </body>
 </html>

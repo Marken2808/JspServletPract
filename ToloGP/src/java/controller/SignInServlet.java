@@ -5,13 +5,16 @@
  */
 package controller;
 
+import database.DBconnection;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,6 +41,18 @@ public class SignInServlet extends HttpServlet {
                 path = "/view/Login.jsp";
         }else {
                 path = "/view/Success.jsp";
+                HttpSession session = request.getSession(false);
+                session.setAttribute("sessionKey", session.getId());
+                
+                
+                Connection connection = (Connection) getServletContext().getAttribute("connection");
+                String userTable = (String) getServletContext().getAttribute("userTable");
+                DBconnection db = new DBconnection();
+                db.getConnection(connection);
+                String listOfUsers = db.selectByTable(userTable);
+                session.setAttribute("userData", listOfUsers);
+                        
+                        
         }
                 
         request.getServletContext().getRequestDispatcher(path).forward(request, response);

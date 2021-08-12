@@ -31,7 +31,6 @@ public class DBconnection {
         try {
             
             String query = "SELECT * FROM " + table;
-            
             System.out.println(">>>" + query);
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();

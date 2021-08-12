@@ -32,7 +32,6 @@ public class Configuration implements ServletContextListener {
         String database = context.getInitParameter("DbContext");
         String userTable = context.getInitParameter("UserContext");
         
-        System.out.println("<<<" + database.trim());
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             connection = DriverManager.getConnection("jdbc:derby://localhost:1527/" + database.trim(), dbName, dbPass);

@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.User;
+import model.UserDAO;
 
 /**
  *
@@ -44,31 +46,11 @@ public class SignInServlet extends HttpServlet {
                 HttpSession session = request.getSession(false);
                 session.setAttribute("sessionKey", session.getId());
                 
+
                 
-                Connection connection = (Connection) getServletContext().getAttribute("connection");
-                String userTable = (String) getServletContext().getAttribute("userTable");
-                DBconnection db = new DBconnection();
-                db.getConnection(connection);
-                String listOfUsers = db.selectByTable(userTable);
-                session.setAttribute("userData", listOfUsers);
-                        
-                        
         }
                 
         request.getServletContext().getRequestDispatcher(path).forward(request, response);
-        
-//        try (PrintWriter out = response.getWriter()) {
-//            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet SignInServlet</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet SignInServlet at " + request.getContextPath() + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-//        }
         
     }
 

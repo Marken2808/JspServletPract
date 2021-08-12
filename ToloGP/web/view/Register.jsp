@@ -9,11 +9,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Register</title>
     </head>
     <body>
         <h1>Register!</h1>
-        <form action="SignUpServlet" method="POST">      
+        <form action="SignUpServlet" method="POST">  
+            <div class="form-floating mb-3">
+                <input type="text" name="username" class="form-control is-valid" id="floatingInput" placeholder="Username" >
+                <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" name="password" class="form-control is-valid" id="floatingInput" placeholder="Password" />
+                <label for="floatingInput">Password</label> 
+            </div>
             <input type="submit" name="actionSignUp" value="Sign Up"/>  
         </form>
     </body>

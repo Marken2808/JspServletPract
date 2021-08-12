@@ -7,11 +7,15 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.User;
+import model.UserDAO;
 
 /**
  *
@@ -39,6 +43,21 @@ public class SignUpServlet extends HttpServlet {
                 path = "/view/Register.jsp";
         } else {
                 path = "/view/Success.jsp";
+                
+                HttpSession session = request.getSession(false);
+                session.setAttribute("sessionKey", session.getId());
+                Connection connection = (Connection) getServletContext().getAttribute("connection");
+                String userTable = (String) getServletContext().getAttribute("userTable");
+                
+                UserDAO userDB = new UserDAO();
+                userDB.getConnection(connection);
+                userDB.createUser(userTable, new User(
+                        request.getParameter("username"), 
+                        request.getParameter("password"), 
+                        "G"));
+                
+//                temporary add
+                session.setAttribute("userData", userDB.getUserLists(userTable));
         }
                 
         request.getServletContext().getRequestDispatcher(path).forward(request, response);

@@ -37,11 +37,8 @@ public class UserDAO {
     
     public void createUser(String table, User user) {
         try {
-            //      query
             String create = "INSERT INTO " + table + " VALUES (?, ?, ?)";
-            //      prepare statement
             preparedStatement = connection.prepareStatement(create);
-            //      set statement position
             preparedStatement.setString(1, user.getuUsername().equals("") ? null : user.getuUsername());
             preparedStatement.setString(2, user.getuPassword().equals("") ? null : user.getuPassword());
             preparedStatement.setString(3, user.getuRole());
@@ -51,4 +48,30 @@ public class UserDAO {
         }
     }
     
+    public User authenticateUser(String table, User user) {
+        try {
+            String authenticate = "SELECT * FROM " + table + " WHERE USERNAME = ? AND PASSWORD = ?";    
+            preparedStatement = connection.prepareStatement(authenticate);
+            preparedStatement.setString(1, user.getuUsername());
+            preparedStatement.setString(2, user.getuPassword());
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                User getUser = new User(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3));
+//                if (getUser.getUserRole().equals("Doctor") || getUser.getUserRole().equals("Nurse")) {
+//                    if (isStaffUnapproved(getUser.getUserName())) {
+////                        System.out.println("again: "+isStaffUnapproved(getUser.getUserName()));
+//                        return null;
+//                    }
+//                }
+                return getUser;
+
+            }
+            resultSet.close();
+            preparedStatement.close();
+        } catch (SQLException ex) {
+            
+        }
+        return null;
+    }
 }

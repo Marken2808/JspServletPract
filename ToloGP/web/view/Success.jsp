@@ -4,6 +4,7 @@
     Author     : Marken Tuan Nguyen
 --%>
 
+<%@page import="model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,11 +16,11 @@
         <h1>SUCCESSFULLY!</h1>
         <%
             String key = (String) session.getAttribute("sessionKey");
-            String data = (String) session.getAttribute("userData");
+            User user = (User) request.getAttribute("user");
         %>
         
         <%=key%>
-        <%=data%>
+        <%=user.getuUsername()%>
         
         
         <footer>

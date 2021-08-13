@@ -51,13 +51,13 @@ public class SignUpServlet extends HttpServlet {
                 
                 UserDAO userDB = new UserDAO();
                 userDB.getConnection(connection);
-                userDB.createUser(userTable, new User(
+                User user = new User(
                         request.getParameter("username"), 
                         request.getParameter("password"), 
-                        "G"));
+                        "G");
+                userDB.createUser(userTable, user);
                 
-//                temporary add
-                session.setAttribute("userData", userDB.getUserLists(userTable));
+                request.setAttribute("user", user);
         }
                 
         request.getServletContext().getRequestDispatcher(path).forward(request, response);

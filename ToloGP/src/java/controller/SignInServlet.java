@@ -42,9 +42,28 @@ public class SignInServlet extends HttpServlet {
         if (request.getParameter("action").equals("logIn")){
                 path = "/view/Login.jsp";
         }else {
-                path = "/view/Success.jsp";
+                
                 HttpSession session = request.getSession(false);
                 session.setAttribute("sessionKey", session.getId());
+                
+                Connection connection = (Connection) getServletContext().getAttribute("connection");
+                String userTable = (String) getServletContext().getAttribute("userTable");
+                
+                UserDAO userDB = new UserDAO();
+                userDB.getConnection(connection);
+                
+                User user = userDB.authenticateUser(userTable, new User(
+                        request.getParameter("username"), 
+                        request.getParameter("password"))
+                );
+                
+                if (user!= null){
+                    System.out.println("user: " + user.toString());
+                    path = "/view/Success.jsp";
+                    request.setAttribute("user", user);
+                } else {
+                    path ="/";
+                }
                 
 
                 

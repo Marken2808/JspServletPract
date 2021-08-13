@@ -17,6 +17,11 @@ public class User implements java.io.Serializable {
     public User() {
     }
 
+    public User(String uUsername, String uPassword) {
+        this.uUsername = uUsername;
+        this.uPassword = uPassword;
+    }
+    
     public User(String uUsername, String uPassword, String uRole) {
         this.uUsername = uUsername;
         this.uPassword = uPassword;
@@ -49,6 +54,10 @@ public class User implements java.io.Serializable {
         this.uRole = uRole;
     }
 
-    
+    @Override
+    public String toString() {
+        return "User{" + "uUsername=" + uUsername + ", uPassword=" + uPassword + ", uRole=" + uRole + '}';
+    }
+
     
 }

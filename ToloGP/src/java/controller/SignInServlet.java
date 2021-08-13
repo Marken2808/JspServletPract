@@ -43,7 +43,7 @@ public class SignInServlet extends HttpServlet {
                 path = "/view/Login.jsp";
         }else {
                 
-                HttpSession session = request.getSession(false);
+                HttpSession session = request.getSession();
                 session.setAttribute("sessionKey", session.getId());
                 
                 Connection connection = (Connection) getServletContext().getAttribute("connection");

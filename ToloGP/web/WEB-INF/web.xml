@@ -10,6 +10,14 @@
         <param-name>UserContext</param-name>
         <param-value>USERS</param-value>
     </context-param>
+    <filter>
+        <filter-name>DirectionFilter</filter-name>
+        <filter-class>filter.DirectionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>DirectionFilter</filter-name>
+        <url-pattern>/</url-pattern>
+    </filter-mapping>
     <listener>
         <description>ServletContextListener</description>
         <listener-class>config.Configuration</listener-class>

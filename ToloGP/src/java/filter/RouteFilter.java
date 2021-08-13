@@ -60,9 +60,11 @@ public class RouteFilter implements Filter {
             System.out.println("Session timed out");
             req.setAttribute("Session", "<p1>Your session has timed out please log back in.<p1>");
             req.getServletContext().getRequestDispatcher("/view/Welcome.jsp").forward(req, res);
+        } else {
+            chain.doFilter(req, res);
         }
         
-        chain.doFilter(req, res);
+        
         
     }
 

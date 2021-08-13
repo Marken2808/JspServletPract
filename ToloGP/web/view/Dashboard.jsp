@@ -15,8 +15,9 @@
         <%@ include file="NavigationBar.jsp" %>
         
         <%= user %>
-        
-        
+        <h2><%= user.getuRole().equals("Admin") ? request.getAttribute("userList") : "" %> </h2>
+        </br>
+        <h2><%= user.getuRole().equals("Admin") ? request.getAttribute("staffList") : "" %> </h2>
     </body>
     
 </html>

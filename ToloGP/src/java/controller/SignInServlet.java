@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.StaffDAO;
 import model.User;
 import model.UserDAO;
 
@@ -39,6 +40,8 @@ public class SignInServlet extends HttpServlet {
         
         String path = "";
         
+        
+        
         if (request.getParameter("action").equals("logIn")){
                 path = "/view/Login.jsp";
         }else {
@@ -48,9 +51,11 @@ public class SignInServlet extends HttpServlet {
                 
                 Connection connection = (Connection) getServletContext().getAttribute("connection");
                 String userTable = (String) getServletContext().getAttribute("userTable");
+                String staffTable = (String) getServletContext().getAttribute("staffTable");
                 
                 UserDAO userDB = new UserDAO();
                 userDB.getConnection(connection);
+                request.setAttribute("userList", userDB.getUserLists(userTable));
                 
                 User user = userDB.authenticateUser(userTable, new User(
                         request.getParameter("username"), 
@@ -60,13 +65,15 @@ public class SignInServlet extends HttpServlet {
                 if (user!= null){
                     System.out.println("user: " + user.toString());
                     path = "/view/Dashboard.jsp";
-//                    
-//                    System.out.println("att: " + request.getAttribute("action"));
-//                    
                     request.setAttribute("user", user);
                 } else {
                     path ="/";
                 }
+                
+//              test staff
+                StaffDAO staffDB = new StaffDAO();
+                staffDB.getConnection(connection);
+                request.setAttribute("staffList", staffDB.getStaffLists(staffTable));
                 
 
                 

@@ -15,6 +15,7 @@ public class Staff extends User{
     private String sName;
     private String sAddress;
     private String sPhone;
+    private boolean isApproved;
     
     public Staff(){}
 
@@ -63,6 +64,14 @@ public class Staff extends User{
 
     public void setsPhone(String sPhone) {
         this.sPhone = sPhone;
+    }
+
+    public boolean isIsApproved() {
+        return isApproved;
+    }
+
+    public void setIsApproved(boolean isApproved) {
+        this.isApproved = isApproved;
     }
     
     

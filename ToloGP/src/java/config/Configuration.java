@@ -31,6 +31,7 @@ public class Configuration implements ServletContextListener {
         
         String database = context.getInitParameter("DbContext");
         String userTable = context.getInitParameter("UserContext");
+        String staffTable = context.getInitParameter("StaffContext");
         
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -42,6 +43,7 @@ public class Configuration implements ServletContextListener {
 //      set shortcut to callback
         context.setAttribute("connection", connection);
         context.setAttribute("userTable", userTable);
+        context.setAttribute("staffTable", staffTable);
         
     }
 

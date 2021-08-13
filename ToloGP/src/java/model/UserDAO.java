@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServlet;
  * @author Marken Tuan Nguyen
  */
 public class UserDAO {
-    
 
     Connection connection = null;
     PreparedStatement preparedStatement = null;

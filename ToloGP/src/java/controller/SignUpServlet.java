@@ -39,6 +39,8 @@ public class SignUpServlet extends HttpServlet {
         
         String path = "";
         
+        
+        
         if (request.getParameter("action").equals("register")){
                 path = "/view/Register.jsp";
         } else {
@@ -54,7 +56,7 @@ public class SignUpServlet extends HttpServlet {
                 User user = new User(
                         request.getParameter("username"), 
                         request.getParameter("password"), 
-                        "G");       //temp role
+                        request.getParameter("role"));
                 userDB.createUser(userTable, user);
                 
                 request.setAttribute("user", user);

@@ -10,9 +10,7 @@
         <param-name>UserContext</param-name>
         <param-value>USERS</param-value>
     </context-param>
-    
     <!-- =============================== FILTER =============================== -->
-    
     <filter>
         <filter-name>RouteFilter</filter-name>
         <filter-class>filter.RouteFilter</filter-class>
@@ -21,16 +19,12 @@
         <filter-name>RouteFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    
     <!-- =============================== LISTENER =============================== -->
-    
     <listener>
         <description>ServletContextListener</description>
         <listener-class>config.Configuration</listener-class>
     </listener>
-    
     <!-- =============================== SERVLET =============================== -->
-    
     <servlet>
         <servlet-name>SignInServlet</servlet-name>
         <servlet-class>controller.SignInServlet</servlet-class>
@@ -55,13 +49,9 @@
         <servlet-name>SignOutServlet</servlet-name>
         <url-pattern>/SignOutServlet</url-pattern>
     </servlet-mapping>
-    
     <!-- =============================== SESSION =============================== -->
-    
     <session-config>
-        <session-timeout>
-            5
-        </session-timeout>
+        <session-timeout>1</session-timeout>
     </session-config>
     <!-- =============================== WELCOME =============================== -->
     <welcome-file-list>

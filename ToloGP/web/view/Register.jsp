@@ -5,6 +5,15 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+    String[] roleList = {"Patient-Private","Patient-NHS","Nurse", "Doctor"};
+    String roleTag = "";
+    for (int i = 0; i < roleList.length; i++) {
+        roleTag += "<option>" + roleList[i] + "</option>";
+    }
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,6 +30,12 @@
             <div class="form-floating mb-3">
                 <input type="password" name="password" class="form-control is-valid" id="floatingInput" placeholder="Password" />
                 <label for="floatingInput">Password</label> 
+            </div>
+            <div class="form-floating mb-2">     
+                <select class="form-select mb-2" name="role" id="floatingInput">
+                    <%=roleTag%>
+                </select>
+                <label class="fw-lighter" for="floatingInput">Role</label>
             </div>
             <button type="submit" name="action" value="signUp">
                 Sign Up

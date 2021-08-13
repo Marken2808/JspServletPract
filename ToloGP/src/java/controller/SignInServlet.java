@@ -59,7 +59,10 @@ public class SignInServlet extends HttpServlet {
                 
                 if (user!= null){
                     System.out.println("user: " + user.toString());
-                    path = "/view/Success.jsp";
+                    path = "/view/Dashboard.jsp";
+//                    
+//                    System.out.println("att: " + request.getAttribute("action"));
+//                    
                     request.setAttribute("user", user);
                 } else {
                     path ="/";

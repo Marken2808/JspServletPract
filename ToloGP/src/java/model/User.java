@@ -15,10 +15,7 @@ public class User implements java.io.Serializable {
     private String uPassword;
     private String uRole;    //Admin, Patient, Staff
 
-   
-    
-    public User() {
-    }
+    public User() {}
 
     public User(String uUsername, String uPassword) {
         this.uUsername = uUsername;

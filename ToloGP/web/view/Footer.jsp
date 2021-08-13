@@ -11,7 +11,7 @@
         <br>
         <button type="submit" class="btn btn-outline-primary">
             <i data-feather="chevron-left"></i>
-            Go Home
+            Log out
         </button>
     </form>
 </div>

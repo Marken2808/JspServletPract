@@ -22,7 +22,6 @@
         <%=key%>
         <%=user.getuUsername()%>
         
-        
         <footer>
             <%@ include file="Footer.jsp" %>
         </footer>

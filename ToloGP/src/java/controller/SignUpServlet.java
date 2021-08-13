@@ -54,7 +54,7 @@ public class SignUpServlet extends HttpServlet {
                 User user = new User(
                         request.getParameter("username"), 
                         request.getParameter("password"), 
-                        "G");
+                        "G");       //temp role
                 userDB.createUser(userTable, user);
                 
                 request.setAttribute("user", user);

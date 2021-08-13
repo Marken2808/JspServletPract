@@ -10,9 +10,12 @@ package model;
  * @author Marken Tuan Nguyen
  */
 public class User implements java.io.Serializable {
+    private int uID;
     private String uUsername;
     private String uPassword;
     private String uRole;    //Admin, Patient, Staff
+
+   
     
     public User() {
     }
@@ -28,7 +31,20 @@ public class User implements java.io.Serializable {
         this.uRole = uRole;
     }
     
-    
+    public User(int uID, String uUsername, String uPassword, String uRole) {
+        this.uID = uID;
+        this.uUsername = uUsername;
+        this.uPassword = uPassword;
+        this.uRole = uRole;
+    }
+
+    public int getuID() {
+        return uID;
+    }
+
+    public void setuID(int uID) {
+        this.uID = uID;
+    }
 
     public String getuUsername() {
         return uUsername;
@@ -56,8 +72,10 @@ public class User implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "User{" + "uUsername=" + uUsername + ", uPassword=" + uPassword + ", uRole=" + uRole + '}';
+        return "User{" + "uID=" + uID + ", uUsername=" + uUsername + ", uPassword=" + uPassword + ", uRole=" + uRole + '}';
     }
+
+    
 
     
 }

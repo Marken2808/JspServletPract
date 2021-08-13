@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Marken Tuan Nguyen
  */
-public class DirectionFilter implements Filter {
+public class RouteFilter implements Filter {
     
     private ServletContext context;
     
@@ -71,7 +71,5 @@ public class DirectionFilter implements Filter {
      */
     public void destroy() {        
     }
-
-    
     
 }

@@ -10,18 +10,27 @@
         <param-name>UserContext</param-name>
         <param-value>USERS</param-value>
     </context-param>
+    
+    <!-- =============================== FILTER =============================== -->
+    
     <filter>
-        <filter-name>DirectionFilter</filter-name>
-        <filter-class>filter.DirectionFilter</filter-class>
+        <filter-name>RouteFilter</filter-name>
+        <filter-class>filter.RouteFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>DirectionFilter</filter-name>
-        <url-pattern>/</url-pattern>
+        <filter-name>RouteFilter</filter-name>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
+    <!-- =============================== LISTENER =============================== -->
+    
     <listener>
         <description>ServletContextListener</description>
         <listener-class>config.Configuration</listener-class>
     </listener>
+    
+    <!-- =============================== SERVLET =============================== -->
+    
     <servlet>
         <servlet-name>SignInServlet</servlet-name>
         <servlet-class>controller.SignInServlet</servlet-class>
@@ -46,6 +55,9 @@
         <servlet-name>SignOutServlet</servlet-name>
         <url-pattern>/SignOutServlet</url-pattern>
     </servlet-mapping>
+    
+    <!-- =============================== SESSION =============================== -->
+    
     <session-config>
         <session-timeout>
             5

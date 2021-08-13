@@ -20,5 +20,10 @@
         
         <%=key%>
         <%=data%>
+        
+        
+        <footer>
+            <%@ include file="Footer.jsp" %>
+        </footer>
     </body>
 </html>

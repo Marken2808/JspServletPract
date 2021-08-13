@@ -22,11 +22,17 @@
                 <input type="password" name="password" class="form-control is-valid" id="floatingInput" placeholder="Password" />
                 <label for="floatingInput">Password</label> 
             </div>
-            <input type="submit" name="actionSignIn" value="Sign In"/>              
+            <button type="submit" name="action" value="signIn">
+                Sign In
+            </button>
         </form>
         
         <form action="SignUpServlet" method="POST">
-            <p>Not have account yet, <input type="submit" name="actionSignUp" value="Register"/> </p>
+            <p>Not have account yet, 
+                <button type="submit" name="action" value="register" >
+                    Register
+                </button>
+            </p>
         </form>
     </body>
 </html>

@@ -15,11 +15,15 @@
         <h2> Welcome to Tolo GP </h2>
         
         <form action="SignInServlet" method="POST">            
-            <input type="submit" name="actionSignIn" value="Log In"/>              
+            <button type="submit" name="action" value="logIn">
+                Log In
+            </button>
         </form>
         
         <form action="SignUpServlet" method="POST">      
-            <input type="submit" name="actionSignUp" value="Register"/>  
+            <button type="submit" name="action" value="register">
+                Register
+            </button>
         </form>
     </body>
 </html>

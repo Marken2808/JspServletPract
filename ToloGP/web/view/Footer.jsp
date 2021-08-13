@@ -9,7 +9,7 @@
 <div  class="fixed-bottom">
     <form action="SignOutServlet" method="POST">
         <br>
-        <button type="submit" class="btn btn-outline-primary" value="GoHome">
+        <button type="submit" class="btn btn-outline-primary">
             <i data-feather="chevron-left"></i>
             Go Home
         </button>

@@ -22,7 +22,9 @@
                 <input type="password" name="password" class="form-control is-valid" id="floatingInput" placeholder="Password" />
                 <label for="floatingInput">Password</label> 
             </div>
-            <input type="submit" name="actionSignUp" value="Sign Up"/>  
+            <button type="submit" name="action" value="signUp">
+                Sign Up
+            </button>
         </form>
     </body>
 </html>

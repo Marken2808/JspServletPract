@@ -39,7 +39,7 @@ public class SignUpServlet extends HttpServlet {
         
         String path = "";
         
-        if (request.getParameter("actionSignUp").equals("Register")){
+        if (request.getParameter("action").equals("register")){
                 path = "/view/Register.jsp";
         } else {
                 path = "/view/Success.jsp";

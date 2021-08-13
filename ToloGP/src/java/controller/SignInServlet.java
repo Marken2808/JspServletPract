@@ -39,7 +39,7 @@ public class SignInServlet extends HttpServlet {
         
         String path = "";
         
-        if (request.getParameter("actionSignIn").equals("Log In")){
+        if (request.getParameter("action").equals("logIn")){
                 path = "/view/Login.jsp";
         }else {
                 path = "/view/Success.jsp";

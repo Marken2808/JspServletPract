@@ -34,6 +34,14 @@ public class Staff extends User{
         this.sPhone = sPhone;
     }
 
+    public Staff(String sName, String sAddress, String sPhone) {
+        this.sName = sName;
+        this.sAddress = sAddress;
+        this.sPhone = sPhone;
+    }
+    
+    
+
     public int getsID() {
         return sID;
     }

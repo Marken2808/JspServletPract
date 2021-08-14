@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Staff;
+import model.StaffDAO;
 import model.User;
 import model.UserDAO;
 
@@ -21,7 +23,6 @@ import model.UserDAO;
  *
  * @author Marken Tuan Nguyen
  */
-@WebServlet("/RegisterPage")
 public class SignUpServlet extends HttpServlet {
 
     /**
@@ -39,31 +40,77 @@ public class SignUpServlet extends HttpServlet {
         
         String path = "";
         
-        
-        
         if (request.getParameter("action").equals("register")){
                 path = "/view/Register.jsp";
         } else {
                 path = "/view/Success.jsp";
                 
-                HttpSession session = request.getSession(false);
-                session.setAttribute("sessionKey", session.getId());
-                Connection connection = (Connection) getServletContext().getAttribute("connection");
-                String userTable = (String) getServletContext().getAttribute("userTable");
-                
-                UserDAO userDB = new UserDAO();
-                userDB.getConnection(connection);
-                User user = new User(
-                        request.getParameter("username"), 
-                        request.getParameter("password"), 
-                        request.getParameter("role"));
-                userDB.createUser(userTable, user);
-                
-                request.setAttribute("user", user);
+                startSession(request);                
+                startConnection(request);
         }
                 
         request.getServletContext().getRequestDispatcher(path).forward(request, response);
     }
+    
+    public void startSession(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        session.setAttribute("sessionKey", session.getId());
+    }
+    
+    public void startConnection(HttpServletRequest request) {
+        
+        String username = (request.getParameter("username"));
+        String password = (request.getParameter("password"));
+        String name = (request.getParameter("name"));
+        String phone = (request.getParameter("phone"));
+        String address = (request.getParameter("address"));
+        String role = (request.getParameter("role"));
+        
+        Connection connection = (Connection) getServletContext().getAttribute("connection");
+        
+        userConnection(request, connection, new User(username, password, role));
+        
+        switch (role){
+            case "Doctor":
+            case "Nurse" :
+                staffConnection(request, connection, new Staff(name, address, phone));
+                break;
+                
+            case "Patient-Private":
+            case "Patient-NHS":
+                patientConnection(request, connection);
+                break;
+        }
+
+    }
+    
+    public void userConnection(HttpServletRequest request, Connection connection, User user) {
+        String userTable = (String) getServletContext().getAttribute("userTable");
+                
+        UserDAO userDB = new UserDAO();
+        userDB.getConnection(connection);
+        userDB.createUser(userTable, user);
+
+        request.setAttribute("user", user);
+    }
+    
+    public void staffConnection(HttpServletRequest request, Connection connection, Staff staff) {
+        
+
+        StaffDAO staffDB = new StaffDAO();
+        staffDB.getConnection(connection);
+
+        System.out.println("Staff ok??");
+    }
+    
+    public void patientConnection(HttpServletRequest request, Connection connection) {
+        
+
+        System.out.println("Patient connected");
+        
+    }
+    
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

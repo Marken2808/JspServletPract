@@ -31,6 +31,19 @@
                 <input type="password" name="password" class="form-control is-valid" id="floatingInput" placeholder="Password" />
                 <label for="floatingInput">Password</label> 
             </div>
+            <div class="form-floating mb-2">
+                <input type="text" name="name" class="form-control is-valid" id="floatingInput" placeholder="Name" />
+                <label for="floatingInput">Name</label>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="text" name="phone" class="form-control is-valid" id="floatingInput" placeholder="Phone" />
+                <label for="floatingInput">Phone</label>
+            </div>
+            <div class="form-floating mb-2">
+                <input type="text" name="address" class="form-control is-valid" id="floatingInput" placeholder="Address" />
+                <label for="floatingInput">Address</label>
+            </div>
+            
             <div class="form-floating mb-2">     
                 <select class="form-select mb-2" name="role" id="floatingInput">
                     <%=roleTag%>

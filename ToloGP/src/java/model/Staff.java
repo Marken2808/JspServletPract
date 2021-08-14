@@ -12,34 +12,15 @@ package model;
 public class Staff extends User{
     
     private int sID;
-    private String sName;
-    private String sAddress;
-    private String sPhone;
     private boolean isApproved;
     
     public Staff(){}
 
-    public Staff(int sID, String sName, String sAddress, String sPhone) {
-        this.sID = sID;
-        this.sName = sName;
-        this.sAddress = sAddress;
-        this.sPhone = sPhone;
-    }
 
-    public Staff(int sID, String sName, String sAddress, String sPhone, String uUsername, String uPassword) {
+    public Staff(int sID, String uUsername, String uPassword) {
         super(uUsername, uPassword);
         this.sID = sID;
-        this.sName = sName;
-        this.sAddress = sAddress;
-        this.sPhone = sPhone;
-    }
-
-    public Staff(String sName, String sAddress, String sPhone) {
-        this.sName = sName;
-        this.sAddress = sAddress;
-        this.sPhone = sPhone;
-    }
-    
+    }    
     
 
     public int getsID() {
@@ -48,30 +29,6 @@ public class Staff extends User{
 
     public void setsID(int sID) {
         this.sID = sID;
-    }
-
-    public String getsName() {
-        return sName;
-    }
-
-    public void setsName(String sName) {
-        this.sName = sName;
-    }
-
-    public String getsAddress() {
-        return sAddress;
-    }
-
-    public void setsAddress(String sAddress) {
-        this.sAddress = sAddress;
-    }
-
-    public String getsPhone() {
-        return sPhone;
-    }
-
-    public void setsPhone(String sPhone) {
-        this.sPhone = sPhone;
     }
 
     public boolean isIsApproved() {

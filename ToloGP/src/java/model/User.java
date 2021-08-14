@@ -14,6 +14,9 @@ public class User implements java.io.Serializable {
     private String uUsername;
     private String uPassword;
     private String uRole;    //Admin, Patient, Staff
+    private String uName;
+    private String uAddress;
+    private String uPhone;
 
     public User() {}
 
@@ -27,12 +30,15 @@ public class User implements java.io.Serializable {
         this.uPassword = uPassword;
         this.uRole = uRole;
     }
-    
-    public User(int uID, String uUsername, String uPassword, String uRole) {
+
+    public User(int uID, String uUsername, String uPassword, String uRole, String uName, String uAddress, String uPhone) {
         this.uID = uID;
         this.uUsername = uUsername;
         this.uPassword = uPassword;
         this.uRole = uRole;
+        this.uName = uName;
+        this.uAddress = uAddress;
+        this.uPhone = uPhone;
     }
 
     public int getuID() {
@@ -67,11 +73,36 @@ public class User implements java.io.Serializable {
         this.uRole = uRole;
     }
 
-    @Override
-    public String toString() {
-        return "User{" + "uID=" + uID + ", uUsername=" + uUsername + ", uPassword=" + uPassword + ", uRole=" + uRole + '}';
+    public String getuName() {
+        return uName;
     }
 
+    public void setuName(String uName) {
+        this.uName = uName;
+    }
+
+    public String getuAddress() {
+        return uAddress;
+    }
+
+    public void setuAddress(String uAddress) {
+        this.uAddress = uAddress;
+    }
+
+    public String getuPhone() {
+        return uPhone;
+    }
+
+    public void setuPhone(String uPhone) {
+        this.uPhone = uPhone;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "uID=" + uID + ", uUsername=" + uUsername + ", uPassword=" + uPassword + ", uRole=" + uRole + ", uName=" + uName + ", uAddress=" + uAddress + ", uPhone=" + uPhone + '}';
+    }
+    
+    
     
 
     

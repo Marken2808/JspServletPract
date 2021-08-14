@@ -94,8 +94,8 @@ public class AuthenticationFilter implements Filter {
         }
 
         if (session == null && (!(uri.contains("SignUpServlet") || (uri.contains("SignInServlet")) || uri.equals("/ESDweb/")      ||   uri.contains("SignOutServlet")   ))) {
-
-            req.getServletContext().getRequestDispatcher("/view/jsp/pages/LoginPage.jsp").forward(req, res);
+            res.sendRedirect(req.getContextPath() + "/");
+//            req.getServletContext().getRequestDispatcher("/view/jsp/pages/LoginPage.jsp").forward(req, res);
         }
 
         chain.doFilter(req, res);

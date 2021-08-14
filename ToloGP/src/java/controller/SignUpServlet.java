@@ -73,12 +73,12 @@ public class SignUpServlet extends HttpServlet {
         switch (role){
             case "Doctor":
             case "Nurse" :
-                staffConnection(request, connection, new Staff(name, address, phone));
+//                staffConnection(request, connection, new Staff(name, address, phone));
                 break;
                 
             case "Patient-Private":
             case "Patient-NHS":
-                patientConnection(request, connection);
+//                patientConnection(request, connection);
                 break;
         }
 

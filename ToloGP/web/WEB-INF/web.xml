@@ -10,12 +10,13 @@
         <param-name>UserContext</param-name>
         <param-value>USERS</param-value>
     </context-param>
-    <!-- =============================== FILTER =============================== -->
     <context-param>
         <description>Staff Table</description>
         <param-name>StaffContext</param-name>
         <param-value>STAFFS</param-value>
     </context-param>
+    <!-- =============================== FILTER =============================== -->
+    
     <filter>
         <filter-name>RouteFilter</filter-name>
         <filter-class>filter.RouteFilter</filter-class>

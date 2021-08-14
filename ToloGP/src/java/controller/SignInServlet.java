@@ -71,9 +71,9 @@ public class SignInServlet extends HttpServlet {
                 }
                 
 //              test staff
-                StaffDAO staffDB = new StaffDAO();
-                staffDB.getConnection(connection);
-                request.setAttribute("staffList", staffDB.getStaffLists(staffTable));
+//                StaffDAO staffDB = new StaffDAO();
+//                staffDB.getConnection(connection);
+//                request.setAttribute("staffList", staffDB.getStaffLists(staffTable));
                 
 
                 

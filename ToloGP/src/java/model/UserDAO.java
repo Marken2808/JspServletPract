@@ -36,7 +36,7 @@ public class UserDAO {
     
     public void createUser(String table, User user) {
         try {
-            String create = "INSERT INTO " + table + " (USERNAME, PASSWORD, ROLE) VALUES (?, ?, ?)";
+            String create = "INSERT INTO " + table + " (U_USERNAME, U_PASSWORD, U_ROLE) VALUES (?, ?, ?)";
             preparedStatement = connection.prepareStatement(create);
             preparedStatement.setString(1, user.getuUsername().equals("") ? null : user.getuUsername());
             preparedStatement.setString(2, user.getuPassword().equals("") ? null : user.getuPassword());
@@ -44,33 +44,33 @@ public class UserDAO {
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException ex) {
-            System.out.println("cannot");
+            System.out.println("cannot createUser");
         }
     }
     
     public User authenticateUser(String table, User user) {
         try {
-            String authenticate = "SELECT * FROM " + table + " WHERE USERNAME = ? AND PASSWORD = ?";    
+            String authenticate = "SELECT * FROM " + table + " WHERE U_USERNAME = ? AND U_PASSWORD = ?";
             preparedStatement = connection.prepareStatement(authenticate);
             preparedStatement.setString(1, user.getuUsername());    // 1st ?
             preparedStatement.setString(2, user.getuPassword());    // 2nd ?
             resultSet = preparedStatement.executeQuery();
-
             while (resultSet.next()) {
-                User getUser = new User(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4));
-//                if (getUser.getUserRole().equals("Doctor") || getUser.getUserRole().equals("Nurse")) {
-//                    if (isStaffUnapproved(getUser.getUserName())) {
-////                        System.out.println("again: "+isStaffUnapproved(getUser.getUserName()));
-//                        return null;
-//                    }
-//                }
-                return getUser;
-
+                User userData = new User(
+                        resultSet.getInt(1), 
+                        resultSet.getString(2), 
+                        resultSet.getString(3), 
+                        resultSet.getString(4),
+                        resultSet.getString(5), 
+                        resultSet.getString(6), 
+                        resultSet.getString(7)
+                );
+                return userData;
             }
             resultSet.close();
             preparedStatement.close();
         } catch (SQLException ex) {
-            
+            System.out.println("cannot authenticateUser");
         }
         return null;
     }

@@ -39,16 +39,13 @@ public class SignInServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         String path = "";
-        
+        HttpSession session = request.getSession(false);
+        session.setAttribute("sessionKey", session.getId());
         
         
         if (request.getParameter("action").equals("logIn")){
                 path = "/view/Login.jsp";
-        }else {
-                
-                HttpSession session = request.getSession();
-                session.setAttribute("sessionKey", session.getId());
-                
+        }else { 
                 Connection connection = (Connection) getServletContext().getAttribute("connection");
                 String userTable = (String) getServletContext().getAttribute("userTable");
                 String staffTable = (String) getServletContext().getAttribute("staffTable");
@@ -79,7 +76,7 @@ public class SignInServlet extends HttpServlet {
                 
         }
                 
-        request.getServletContext().getRequestDispatcher(path).forward(request, response);
+        request.getRequestDispatcher(path).forward(request, response);
         
     }
 

@@ -16,7 +16,6 @@
         <param-value>STAFFS</param-value>
     </context-param>
     <!-- =============================== FILTER =============================== -->
-    
     <filter>
         <filter-name>RouteFilter</filter-name>
         <filter-class>filter.RouteFilter</filter-class>
@@ -56,6 +55,7 @@
         <url-pattern>/SignOutServlet</url-pattern>
     </servlet-mapping>
     <!-- =============================== SESSION =============================== -->
+    
     <session-config>
         <session-timeout>1</session-timeout>
     </session-config>

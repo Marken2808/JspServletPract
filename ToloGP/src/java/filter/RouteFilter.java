@@ -16,6 +16,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -48,23 +49,28 @@ public class RouteFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain) throws IOException, ServletException {
         
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
-        HttpSession session = req.getSession(false);
         
-        String uri = req.getRequestURI();
         
-        this.context.log("Requested Resource::" + uri); 
-        
-        if (session == null) {
-            System.out.println("Session timed out");
-            req.setAttribute("Session", "<p1>Your session has timed out please log back in.<p1>");
-            res.sendRedirect(req.getContextPath() + "/");
-//            req.getServletContext().getRequestDispatcher("/view/Welcome.jsp").forward(req, res);
+        try {
+            HttpServletRequest req = (HttpServletRequest) request;
+            HttpServletResponse res = (HttpServletResponse) response;
+            HttpSession session = req.getSession(false);
+
+            String uri = req.getRequestURI();
+            this.context.log("Requested Resource::" + uri); 
+            if (session == null) {
+                System.out.println("Session timed out");
+    //            req.setAttribute("Session", "<p1>Your session has timed out please log back in.<p1>");            
+                this.context.log("None authenticatied request, session:: " + session);
+                request.getRequestDispatcher("/view/Welcome.jsp").forward(request, response);
+            } else {
+                this.context.log("Authenticatied request, session:: " + session);
+                chain.doFilter(req, response);
+            } 
+        } catch (Throwable e) {
         }
-        chain.doFilter(req, res);
         
-        
+            
         
         
     }

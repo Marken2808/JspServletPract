@@ -68,7 +68,7 @@ public class SignUpServlet extends HttpServlet {
         
         Connection connection = (Connection) getServletContext().getAttribute("connection");
         
-        userConnection(request, connection, new User(username, password, role));
+        userConnection(request, connection, new User(0, username, password, role, name, address, phone));
         
         switch (role){
             case "Doctor":

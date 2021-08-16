@@ -20,10 +20,29 @@
         <filter-name>RouteFilter</filter-name>
         <filter-class>filter.RouteFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>filter.AdminFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>StaffFilter</filter-name>
+        <filter-class>filter.StaffFilter</filter-class>
+    </filter>
+    
+    
+    <filter-mapping>
+        <filter-name>StaffFilter</filter-name>
+        <url-pattern>/Staff</url-pattern>
+    </filter-mapping>    
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/Admin/*</url-pattern>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>RouteFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    
     <!-- =============================== LISTENER =============================== -->
     <listener>
         <description>ServletContextListener</description>
@@ -42,6 +61,14 @@
         <servlet-name>SignOutServlet</servlet-name>
         <servlet-class>controller.SignOutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Admin</servlet-name>
+        <servlet-class>controller.admin.Admin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Staff</servlet-name>
+        <servlet-class>controller.Staff.Staff</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignInServlet</servlet-name>
         <url-pattern>/SignInServlet</url-pattern>
@@ -53,6 +80,14 @@
     <servlet-mapping>
         <servlet-name>SignOutServlet</servlet-name>
         <url-pattern>/SignOutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin</servlet-name>
+        <url-pattern>/Admin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Staff</servlet-name>
+        <url-pattern>/Staff</url-pattern>
     </servlet-mapping>
     <!-- =============================== SESSION =============================== -->
     

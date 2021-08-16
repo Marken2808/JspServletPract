@@ -3,28 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package controller.Staff;
 
-import database.DBconnection;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.StaffDAO;
-import model.User;
-import model.UserDAO;
 
 /**
  *
  * @author Marken Tuan Nguyen
  */
-@WebServlet("/SignIn")
-public class SignInServlet extends HttpServlet {
+
+@WebServlet("/staff/dashboard")
+public class Staff extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,54 +35,11 @@ public class SignInServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String path = "";
         HttpSession session = request.getSession(false);
-        session.setAttribute("sessionKey", session.getId());
+        session.setAttribute("staffTest", "This is Staff testing");
         
         
-        if (request.getParameter("action").equals("logIn")){
-                path = "/view/Login.jsp";
-                request.getServletContext().getRequestDispatcher(path).forward(request, response);
-        } else {
-            
-            Connection connection = (Connection) getServletContext().getAttribute("connection");
-            String userTable = (String) getServletContext().getAttribute("userTable");
-            String staffTable = (String) getServletContext().getAttribute("staffTable");
-
-            UserDAO userDB = new UserDAO();
-            userDB.getConnection(connection);
-            request.setAttribute("userList", userDB.getUserLists(userTable));
-
-            User user = userDB.authenticateUser(userTable, new User(
-                    request.getParameter("username"), 
-                    request.getParameter("password"))
-            );
-            if (user!= null){
-                System.out.println("user: " + user.toString());
-                session.setAttribute("user", user);
-
-                switch(user.getuRole()){
-                    case "Admin":
-                        path = "/Admin";
-                        break;
-                    case "Doctor":
-                    case "Nurse":
-                        path = "/Staff";
-                        break;
-                }
-                
-                response.sendRedirect(request.getContextPath() + path);
-            }
-                
-//              test staff
-//                StaffDAO staffDB = new StaffDAO();
-//                staffDB.getConnection(connection);
-//                request.setAttribute("staffList", staffDB.getStaffLists(staffTable));
- 
-        
-        }   
-
-        
+        request.getServletContext().getRequestDispatcher("/view/Dashboard.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

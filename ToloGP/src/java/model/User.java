@@ -24,12 +24,6 @@ public class User implements java.io.Serializable {
         this.uUsername = uUsername;
         this.uPassword = uPassword;
     }
-    
-    public User(String uUsername, String uPassword, String uRole) {
-        this.uUsername = uUsername;
-        this.uPassword = uPassword;
-        this.uRole = uRole;
-    }
 
     public User(int uID, String uUsername, String uPassword, String uRole, String uName, String uAddress, String uPhone) {
         this.uID = uID;

@@ -7,8 +7,7 @@
 <%@page import="model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% 
-    User user = (User) request.getAttribute("user");
-    
+    User user = (User) session.getAttribute("user");
 %>
 
 

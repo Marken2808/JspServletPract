@@ -16,27 +16,27 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.User;
 
 /**
  *
  * @author Marken Tuan Nguyen
  */
-
-@WebFilter("/filter")
-public class RouteFilter implements Filter {
+public class StaffFilter implements Filter {
     
     private ServletContext context;
     
     /**
      * Init method for this filter
+     * @param fConfig
      */
+    @Override
     public void init(FilterConfig fConfig) {        
         this.context = fConfig.getServletContext();
-        this.context.log("RouterFilter initialized");
+        this.context.log("StaffFilter initialized");
     }
 
     /**
@@ -48,26 +48,34 @@ public class RouteFilter implements Filter {
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet error occurs
      */
+    @Override
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain) throws IOException, ServletException {
         
-        
+        try {
             HttpServletRequest req = (HttpServletRequest) request;
             HttpServletResponse res = (HttpServletResponse) response;
             HttpSession session = req.getSession(false);
-            
+
             String uri = req.getRequestURI();
-            String wel = req.getContextPath() + "/";
+            this.context.log("Requested Staff Resource::" + uri); 
             
-//          return first page when only session null and not initialise uri
-            if (session == null && !uri.endsWith(req.getContextPath() + "/")) {
-                System.out.println("Session timed out");
-                res.sendRedirect(wel);
-//                request.getRequestDispatcher("/view/Welcome.jsp").forward(request, response);
-            } else {
-                chain.doFilter(req, response);
-            } 
+//            User user = (User) session.getAttribute("user");
+            
+            
+//            if (user.getuRole().equals("Admin")) {     
+//                this.context.log("Admin session:: " + session.getAttribute("sessionKey"));
+//                chain.doFilter(req, response);
+//            } else {
+//                System.out.println("Wrong place ?");
+//            }
+
+            
+            chain.doFilter(req, response);
+        } catch (IOException | ServletException e) {
+        }
         
+            
         
         
     }
@@ -75,7 +83,9 @@ public class RouteFilter implements Filter {
     /**
      * Destroy method for this filter
      */
+    @Override
     public void destroy() {        
     }
+    
     
 }

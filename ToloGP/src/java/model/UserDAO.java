@@ -36,11 +36,15 @@ public class UserDAO {
     
     public void createUser(String table, User user) {
         try {
-            String create = "INSERT INTO " + table + " (U_USERNAME, U_PASSWORD, U_ROLE) VALUES (?, ?, ?)";
+            String create = "INSERT INTO " + table + " (U_USERNAME, U_PASSWORD, U_ROLE, U_NAME, U_ADDRESS, U_PHONE) VALUES (?, ?, ?, ?, ?, ?)";
             preparedStatement = connection.prepareStatement(create);
             preparedStatement.setString(1, user.getuUsername().equals("") ? null : user.getuUsername());
             preparedStatement.setString(2, user.getuPassword().equals("") ? null : user.getuPassword());
             preparedStatement.setString(3, user.getuRole());
+            preparedStatement.setString(4, user.getuName().equals("") ? null : user.getuName());
+            preparedStatement.setString(5, user.getuAddress().equals("") ? null : user.getuAddress());
+            preparedStatement.setString(6, user.getuPhone().equals("") ? null : user.getuPhone());
+            
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException ex) {

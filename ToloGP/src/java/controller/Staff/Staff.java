@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.Staff;
+package controller.staff;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,7 +19,6 @@ import javax.servlet.http.HttpSession;
  * @author Marken Tuan Nguyen
  */
 
-@WebServlet("/staff/dashboard")
 public class Staff extends HttpServlet {
 
     /**

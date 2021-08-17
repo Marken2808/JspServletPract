@@ -63,10 +63,13 @@ public class AdminFilter implements Filter {
             
             User user = (User) session.getAttribute("user");
             
+            System.out.println("user: "+ user.getuRole());
             
             if (user.getuRole().equals("Admin")) {     
                 this.context.log("Admin session:: " + session.getAttribute("sessionKey"));
+                
                 chain.doFilter(req, response);
+                
             } else {
                 System.out.println("Wrong place ?");
             }

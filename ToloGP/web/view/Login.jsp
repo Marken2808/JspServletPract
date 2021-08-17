@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Login!</h1>
-        <form action="SignInServlet" method="POST">
+        <form action="signIn" method="POST">
             <div class="form-floating mb-3">
                 <input type="text" name="username" class="form-control is-valid" id="floatingInput" placeholder="Username" >
                 <label for="floatingInput">Username</label>
@@ -27,7 +27,7 @@
             </button>
         </form>
         
-        <form action="SignUpServlet" method="POST">
+        <form action="signUp" method="POST">
             <p>Not have account yet, 
                 <button type="submit" name="action" value="register" >
                     Register

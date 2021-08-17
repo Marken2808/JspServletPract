@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <div  class="fixed-bottom">
-    <form action="SignOutServlet" method="POST">
+    <form action="signOut" method="POST">
         <br>
         <button type="submit" class="btn btn-outline-primary">
             <i data-feather="chevron-left"></i>

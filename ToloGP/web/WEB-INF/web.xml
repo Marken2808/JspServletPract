@@ -28,21 +28,18 @@
         <filter-name>StaffFilter</filter-name>
         <filter-class>filter.StaffFilter</filter-class>
     </filter>
-    
-    
     <filter-mapping>
         <filter-name>StaffFilter</filter-name>
-        <url-pattern>/Staff</url-pattern>
-    </filter-mapping>    
+        <url-pattern>/staff/*</url-pattern>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>AdminFilter</filter-name>
-        <url-pattern>/Admin/*</url-pattern>
+        <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>RouteFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    
     <!-- =============================== LISTENER =============================== -->
     <listener>
         <description>ServletContextListener</description>
@@ -67,8 +64,18 @@
     </servlet>
     <servlet>
         <servlet-name>Staff</servlet-name>
-        <servlet-class>controller.Staff.Staff</servlet-class>
+        <servlet-class>controller.staff.Staff</servlet-class>
     </servlet>
+    <!-- =============================== MAPPING =============================== -->
+    <servlet-mapping>
+        <servlet-name>Admin</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Staff</servlet-name>
+        <url-pattern>/staff</url-pattern>
+    </servlet-mapping>
+    <!-- =============================== SESSION =============================== -->
     <servlet-mapping>
         <servlet-name>SignInServlet</servlet-name>
         <url-pattern>/SignInServlet</url-pattern>
@@ -81,16 +88,6 @@
         <servlet-name>SignOutServlet</servlet-name>
         <url-pattern>/SignOutServlet</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Admin</servlet-name>
-        <url-pattern>/Admin</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Staff</servlet-name>
-        <url-pattern>/Staff</url-pattern>
-    </servlet-mapping>
-    <!-- =============================== SESSION =============================== -->
-    
     <session-config>
         <session-timeout>1</session-timeout>
     </session-config>

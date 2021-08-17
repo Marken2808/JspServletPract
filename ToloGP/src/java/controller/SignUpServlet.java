@@ -23,6 +23,8 @@ import model.UserDAO;
  *
  * @author Marken Tuan Nguyen
  */
+
+@WebServlet("/signUp")
 public class SignUpServlet extends HttpServlet {
 
     /**
@@ -44,20 +46,17 @@ public class SignUpServlet extends HttpServlet {
                 path = "/view/Register.jsp";
         } else {
                 path = "/view/Success.jsp";
-                
-                startSession(request);                
                 startConnection(request);
         }
                 
         request.getServletContext().getRequestDispatcher(path).forward(request, response);
     }
     
-    public void startSession(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
-        session.setAttribute("sessionKey", session.getId());
-    }
     
     public void startConnection(HttpServletRequest request) {
+        
+//        HttpSession session = request.getSession(false);          // need???
+//        session.setAttribute("sessionKey", session.getId());
         
         String username = (request.getParameter("username"));
         String password = (request.getParameter("password"));
@@ -67,7 +66,6 @@ public class SignUpServlet extends HttpServlet {
         String role = (request.getParameter("role"));
         
         Connection connection = (Connection) getServletContext().getAttribute("connection");
-        
         userConnection(request, connection, new User(0, username, password, role, name, address, phone));
         
         switch (role){

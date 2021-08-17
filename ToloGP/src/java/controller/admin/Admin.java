@@ -18,8 +18,6 @@ import javax.servlet.http.HttpSession;
  *
  * @author Marken Tuan Nguyen
  */
-
-@WebServlet("/admin/dashboard")
 public class Admin extends HttpServlet {
 
     /**
@@ -37,7 +35,7 @@ public class Admin extends HttpServlet {
         HttpSession session = request.getSession(false);
         session.setAttribute("adminTest", "This is Admin testing");
         request.getServletContext().getRequestDispatcher("/view/Dashboard.jsp").forward(request, response);
-//        request.getContextPath()+"/Admin/dashboard";
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

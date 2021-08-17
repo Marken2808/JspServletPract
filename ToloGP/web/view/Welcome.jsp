@@ -14,13 +14,13 @@
     <body>
         <h2> Welcome to Tolo GP </h2>
         
-        <form action="SignInServlet" method="POST">            
+        <form action="signIn" method="POST">            
             <button type="submit" name="action" value="logIn">
                 Log In
-            </button>
+            </button>  
+            
         </form>
-        
-        <form action="SignUpServlet" method="POST">      
+        <form action="signUp" method="POST">
             <button type="submit" name="action" value="register">
                 Register
             </button>

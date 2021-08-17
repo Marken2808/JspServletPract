@@ -23,7 +23,8 @@ import model.UserDAO;
  *
  * @author Marken Tuan Nguyen
  */
-@WebServlet("/SignIn")
+
+@WebServlet("/signIn")
 public class SignInServlet extends HttpServlet {
 
     /**
@@ -39,56 +40,70 @@ public class SignInServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String path = "";
+        String path = "/";
+        
+//        System.out.println("test: " + request.getParameter("action"));
+        
+        switch(request.getParameter("action")) {
+            case "logIn":
+                path = "/view/Login.jsp";
+                request.getServletContext().getRequestDispatcher(path).forward(request, response);
+                break;
+            case "signIn":
+                startConnection(request, response);
+                break;
+        }
+    }
+
+    public void startConnection(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        
         HttpSession session = request.getSession(false);
         session.setAttribute("sessionKey", session.getId());
         
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String path = "";
         
-        if (request.getParameter("action").equals("logIn")){
-                path = "/view/Login.jsp";
-                request.getServletContext().getRequestDispatcher(path).forward(request, response);
-        } else {
-            
-            Connection connection = (Connection) getServletContext().getAttribute("connection");
-            String userTable = (String) getServletContext().getAttribute("userTable");
-            String staffTable = (String) getServletContext().getAttribute("staffTable");
+        Connection connection = (Connection) getServletContext().getAttribute("connection");
+        User user = userAuthentication(connection, new User(username, password));
+        session.setAttribute("user", user);
+        
+        switch(user.getuRole()){
+            case "Admin":
+                path = "/admin";
+                break;
+            case "Doctor":
+            case "Nurse":
+                path = "/staff";
+                break;
+            default:
+                path = "/" ;
+                break;
 
-            UserDAO userDB = new UserDAO();
-            userDB.getConnection(connection);
-            request.setAttribute("userList", userDB.getUserLists(userTable));
+        }
 
-            User user = userDB.authenticateUser(userTable, new User(
-                    request.getParameter("username"), 
-                    request.getParameter("password"))
-            );
-            if (user!= null){
-                System.out.println("user: " + user.toString());
-                session.setAttribute("user", user);
+        response.sendRedirect(request.getContextPath() + path);
+        
+    }
+    
+    public User userAuthentication (Connection connection, User user) {
+              
+        String userTable = (String) getServletContext().getAttribute("userTable");
+        String staffTable = (String) getServletContext().getAttribute("staffTable");
+        
+        UserDAO userDB = new UserDAO();
+        userDB.getConnection(connection);
 
-                switch(user.getuRole()){
-                    case "Admin":
-                        path = "/Admin";
-                        break;
-                    case "Doctor":
-                    case "Nurse":
-                        path = "/Staff";
-                        break;
-                }
-                
-                response.sendRedirect(request.getContextPath() + path);
-            }
-                
+        return user!=null ? userDB.authenticateUser(userTable, user) : null;
+
+        
+        
 //              test staff
 //                StaffDAO staffDB = new StaffDAO();
 //                staffDB.getConnection(connection);
 //                request.setAttribute("staffList", staffDB.getStaffLists(staffTable));
- 
-        
-        }   
-
-        
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

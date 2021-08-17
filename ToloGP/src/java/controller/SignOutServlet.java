@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Marken Tuan Nguyen
  */
+
+@WebServlet("/signOut")
 public class SignOutServlet extends HttpServlet {
 
     /**

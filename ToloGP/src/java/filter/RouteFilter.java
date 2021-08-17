@@ -64,9 +64,16 @@ public class RouteFilter implements Filter {
                 System.out.println("Session timed out");
                 res.sendRedirect(wel);
 //                request.getRequestDispatcher("/view/Welcome.jsp").forward(request, response);
-            } else {
-                chain.doFilter(req, response);
             } 
+            
+            if (session !=null && session.getAttribute("user")!=null) {
+                System.out.println("you are in");
+            } else {
+                System.out.println("not set yet");
+            }
+            
+            chain.doFilter(req, response);
+            
         
         
         

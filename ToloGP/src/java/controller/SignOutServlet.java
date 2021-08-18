@@ -36,6 +36,8 @@ public class SignOutServlet extends HttpServlet {
             throws ServletException, IOException {
         
         Cookie[] cookies = request.getCookies();
+        HttpSession session = request.getSession(false);
+        
     	if(cookies != null){
             for(Cookie cookie : cookies){
                 if(cookie.getName().equals("JSESSIONID")){
@@ -44,15 +46,14 @@ public class SignOutServlet extends HttpServlet {
                 }
             }
     	}
-    	//invalidate the session if exists
-    	HttpSession session = request.getSession(false);
+    	
         
     	if(session != null){
             session.invalidate();
-    	}
+            response.sendRedirect(request.getContextPath() + "/");
+    	} 
+
         
-//      send back home page
-        response.sendRedirect(request.getContextPath() + "/");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

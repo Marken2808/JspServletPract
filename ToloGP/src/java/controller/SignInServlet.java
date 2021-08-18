@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Staff;
 import model.StaffDAO;
 import model.User;
 import model.UserDAO;
@@ -76,6 +77,9 @@ public class SignInServlet extends HttpServlet {
             case "Nurse":
                 path = "/staff";
                 break;
+            case "Patient-Private":
+            case "Patient-NHS":
+                path = "/patient";
             default:
                 path = "/" ;
                 break;
@@ -89,20 +93,14 @@ public class SignInServlet extends HttpServlet {
     public User userAuthentication (Connection connection, User user) {
               
         String userTable = (String) getServletContext().getAttribute("userTable");
-        String staffTable = (String) getServletContext().getAttribute("staffTable");
         
         UserDAO userDB = new UserDAO();
         userDB.getConnection(connection);
 
         return user!=null ? userDB.authenticateUser(userTable, user) : null;
 
-        
-        
-//              test staff
-//                StaffDAO staffDB = new StaffDAO();
-//                staffDB.getConnection(connection);
-//                request.setAttribute("staffList", staffDB.getStaffLists(staffTable));
     }
+    
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

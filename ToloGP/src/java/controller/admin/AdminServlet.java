@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.staff;
+package controller.admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,7 +19,8 @@ import javax.servlet.http.HttpSession;
  * @author Marken Tuan Nguyen
  */
 
-public class Staff extends HttpServlet {
+@WebServlet("/admin")
+public class AdminServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,12 +34,10 @@ public class Staff extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         HttpSession session = request.getSession(false);
-        session.setAttribute("staffTest", "This is Staff testing");
-        
-        
+        session.setAttribute("adminTest", "This is Admin testing");
         request.getServletContext().getRequestDispatcher("/view/Dashboard.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

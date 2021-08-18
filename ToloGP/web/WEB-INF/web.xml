@@ -59,23 +59,14 @@
         <servlet-class>controller.SignOutServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Admin</servlet-name>
-        <servlet-class>controller.admin.Admin</servlet-class>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>controller.admin.AdminServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Staff</servlet-name>
-        <servlet-class>controller.staff.Staff</servlet-class>
+        <servlet-name>StaffServlet</servlet-name>
+        <servlet-class>controller.staff.StaffServlet</servlet-class>
     </servlet>
     <!-- =============================== MAPPING =============================== -->
-    <servlet-mapping>
-        <servlet-name>Admin</servlet-name>
-        <url-pattern>/admin</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Staff</servlet-name>
-        <url-pattern>/staff</url-pattern>
-    </servlet-mapping>
-    <!-- =============================== SESSION =============================== -->
     <servlet-mapping>
         <servlet-name>SignInServlet</servlet-name>
         <url-pattern>/SignInServlet</url-pattern>
@@ -88,6 +79,17 @@
         <servlet-name>SignOutServlet</servlet-name>
         <url-pattern>/SignOutServlet</url-pattern>
     </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/AdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StaffServlet</servlet-name>
+        <url-pattern>/StaffServlet</url-pattern>
+    </servlet-mapping>
+    <!-- =============================== SESSION =============================== -->
+    
     <session-config>
         <session-timeout>1</session-timeout>
     </session-config>
